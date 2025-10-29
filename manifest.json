@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "AEM Dev Toolbar",
+  "version": "1.0.0",
+  "description": "Toolbar flotante para navegar entre Editor, Sites y CRXDE en AEM.",
+  "icons": { "128": "icon.png" },
+  "permissions": ["activeTab", "scripting"],
+  "content_scripts": [
+    {
+      "matches": ["http://localhost:4502/*", "https://*.aemcloud.net/*"],
+      "js": ["index.js"],
+      "css": ["style.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "host_permissions": ["http://localhost:4502/*", "https://*.aemcloud.net/*"]
+}

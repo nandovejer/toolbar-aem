@@ -1,0 +1,41 @@
+.aem-toolbar {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3367d6;
+  border-radius: 999px;
+  padding: 8px 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 2147483647;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+  font-family: sans-serif;
+}
+
+.aem-toolbar-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.aem-toolbar-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.aem-toolbar-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+@media (prefers-color-scheme: dark) {
+  .aem-toolbar {
+    background: #1a1a1a;
+  }
+}
