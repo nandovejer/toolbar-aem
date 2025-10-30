@@ -1,27 +1,41 @@
+/* === Base Toolbar === */
 .aem-toolbar {
+  font-family: "Consolas", monospace, sans-serif;
+  font-size: 12px;
   position: fixed;
   bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
-  background: #3367d6;
+  background: rgba(49, 128, 117, 0.95);
   border-radius: 999px;
   padding: 8px 16px;
   display: flex;
+  align-items: center;
   gap: 8px;
   z-index: 2147483647;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
   pointer-events: auto;
-  font-family: sans-serif;
+  transition: opacity 0.25s ease, transform 0.3s ease;
 }
 
+/* --- Hidden state (only toggle visible) --- */
+.aem-toolbar.collapsed {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  gap: 0;
+}
+
+/* === Buttons === */
 .aem-toolbar-btn {
   background: transparent;
   border: none;
   color: #fff;
-  font-size: 14px;
+  font-size: 12px;
+  text-transform: uppercase;
   padding: 6px 12px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 1em;
   transition: background 0.2s;
 }
 
@@ -30,12 +44,67 @@
 }
 
 .aem-toolbar-btn:disabled {
-  opacity: 0.6;
-  cursor: default;
+  opacity: 0.5;
+  background: rgba(255, 255, 255, 0.1);
+  cursor: not-allowed;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* === Toggle Button === */
+.aem-toolbar-toggle {
+  background: rgba(255, 255, 255, 0.75);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.25s, opacity 0.25s;
+  backdrop-filter: blur(6px);
+
+}
+
+.aem-toolbar-toggle:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+/* --- When toolbar is collapsed --- */
+.aem-toolbar.collapsed .aem-toolbar-toggle {
+    position: fixed;
+  left: calc(50% - 16px);
+  top: -24px;
+  transform: translateX(-50%);
+  opacity: 0.6;
+  background: rgba(255, 255, 255, 0.2);
+  left: 50%;
+  top: 0;
+  bottom: 0;
+}
+
+.aem-toolbar.collapsed .aem-toolbar-toggle:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* --- Group of main buttons --- */
+.aem-toolbar-group {
+  display: flex;
+  gap: 8px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.aem-toolbar.collapsed .aem-toolbar-group {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+/* === Dark Mode === */
 @media (prefers-color-scheme: dark) {
   .aem-toolbar {
-    background: #1a1a1a;
+    background: rgba(26, 26, 26, 0.95);
   }
 }

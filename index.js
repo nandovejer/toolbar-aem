@@ -1,76 +1,161 @@
+// ------------------ Initialization ------------------
+
+function initToolbar() {
+  if (document.querySelector(".aem-toolbar")) return; // avoid duplicates
+
+  const toolbar = document.createElement("div");
+  toolbar.className = "aem-toolbar";
+
+  // --- Toggle button (+ / -)
+  const toggle = document.createElement("button");
+  toggle.className = "aem-toolbar-toggle";
+  toggle.textContent = "−";
+  toggle.title = "Hide toolbar";
+  toggle.onclick = () => toggleToolbar(toolbar, toggle);
+  toolbar.appendChild(toggle);
+
+  // --- Button group container
+  const group = document.createElement("div");
+  group.className = "aem-toolbar-group";
+
+  const buttons = [
+    { label: "Edit", action: goToEditor, id: "btn-edit" },
+    { label: "View", action: goToContent, id: "btn-view" },
+    { label: "Sites", action: goToSites, id: "btn-sites" },
+    { label: "CRX", action: goToCrx, id: "btn-crx" },
+  ];
+
+  for (const { label, action, id } of buttons) {
+    const btn = document.createElement("button");
+    btn.textContent = label;
+    btn.className = "aem-toolbar-btn";
+    btn.id = id;
+    btn.onclick = action;
+    group.appendChild(btn);
+  }
+
+  toolbar.appendChild(group);
+  document.body.appendChild(toolbar);
+
+  updateActiveButton();
+}
+
+// ------------------ Toolbar Toggle ------------------
+
+function toggleToolbar(toolbar, toggle) {
+  const group = toolbar.querySelector(".aem-toolbar-group");
+  const isHidden = group.classList.toggle("hidden");
+
+  if (isHidden) {
+    toggle.textContent = "+";
+    toggle.title = "Show toolbar";
+  } else {
+    toggle.textContent = "−";
+    toggle.title = "Hide toolbar";
+  }
+}
+
+// ------------------ Context Detection ------------------
+
+function getCurrentMode() {
+  const href = window.location.href;
+
+  if (href.includes("/editor.html")) return "edit";
+  if (href.includes("/sites.html")) return "sites";
+  if (href.includes("/crx/de/")) return "crx";
+  if (href.includes("/content/")) return "view";
+
+  return "unknown";
+}
+
+function updateActiveButton() {
+  const mode = getCurrentMode();
+
+  document.querySelectorAll(".aem-toolbar-btn").forEach((btn) => {
+    btn.disabled = false;
+  });
+
+  switch (mode) {
+    case "edit":
+      disableButton("btn-edit");
+      break;
+    case "view":
+      disableButton("btn-view");
+      break;
+    case "sites":
+      disableButton("btn-sites");
+      break;
+    case "crx":
+      disableButton("btn-crx");
+      break;
+  }
+}
+
+function disableButton(id) {
+  const btn = document.getElementById(id);
+  if (btn) btn.disabled = true;
+}
+
+// ------------------ Navigation ------------------
+
+function getContentPath() {
+  const path = window.location.pathname;
+  if (path.startsWith("/editor.html")) return path.replace("/editor.html", "");
+  if (path.startsWith("/sites.html")) return path.replace("/sites.html", "");
+  return path;
+}
+
+function goToEditor() {
+  const path = getContentPath();
+  if (!path.startsWith("/content/")) {
+    alert("Not a valid AEM content path.");
+    return;
+  }
+  window.location.href = `/editor.html${path}`;
+}
+
+function goToContent() {
+  const path = getContentPath();
+  if (path.startsWith("/content/")) window.location.href = path;
+  else window.location.href = `/content${path}`;
+}
+
+function goToSites() {
+  const path = getContentPath();
+  window.location.href = `/sites.html${path}`;
+}
+
+function goToCrx() {
+  const path = getContentPath();
+  const crxPath = `/crx/de/index.jsp#${path}`;
+  window.open(crxPath, "_blank", "noopener,noreferrer");
+}
+
+function toggleToolbar(toolbar, toggle) {
+  const isCollapsed = toolbar.classList.toggle("collapsed");
+
+  if (isCollapsed) {
+    toggle.textContent = "+";
+    toggle.title = "Show toolbar";
+  } else {
+    toggle.textContent = "−";
+    toggle.title = "Hide toolbar";
+  }
+}
+
+
+
+// ------------------ Execution ------------------
+
 (function () {
-  // Ejecutar también dentro de iframes de AEM (editor)
   const isAEM =
     location.hostname.includes("localhost") ||
     location.hostname.includes("aemcloud.net");
   if (!isAEM) return;
 
-  // Evitar ejecutar varias veces
   if (window.hasRunAEMToolbar) return;
   window.hasRunAEMToolbar = true;
 
-  // Esperar a que el body exista
   const ready = () => (document.body ? initToolbar() : setTimeout(ready, 200));
   ready();
-
-  function initToolbar() {
-    // Evitar duplicados si el toolbar ya existe
-    if (document.querySelector(".aem-toolbar")) return;
-
-    const toolbar = document.createElement("div");
-    toolbar.className = "aem-toolbar";
-
-    const buttons = [
-      { label: "Edit", action: goToEditor },
-      { label: "View", action: goToContent },
-      { label: "Sites", action: goToSites },
-      { label: "CRXDE", action: goToCrx },
-    ];
-
-    for (const { label, action } of buttons) {
-      const btn = document.createElement("button");
-      btn.textContent = label;
-      btn.className = "aem-toolbar-btn";
-      btn.onclick = action;
-      toolbar.appendChild(btn);
-    }
-
-    document.body.appendChild(toolbar);
-  }
-
-  // ------------------ Navegación ------------------
-
-  function getContentPath() {
-    const path = window.location.pathname;
-    if (path.startsWith("/editor.html"))
-      return path.replace("/editor.html", "");
-    if (path.startsWith("/sites.html")) return path.replace("/sites.html", "");
-    return path;
-  }
-
-  function goToEditor() {
-    const path = getContentPath();
-    if (!path.startsWith("/content/")) {
-      alert("No parece una ruta de contenido válida en AEM.");
-      return;
-    }
-    window.location.href = `/editor.html${path}`;
-  }
-
-  function goToContent() {
-    const path = getContentPath();
-    if (path.startsWith("/content/")) window.location.href = path;
-    else window.location.href = `/content${path}`;
-  }
-
-  function goToSites() {
-    const path = getContentPath();
-    window.location.href = `/sites.html${path}`;
-  }
-
-  function goToCrx() {
-    const path = getContentPath();
-    const crxPath = `/crx/de/index.jsp#${path}`;
-    window.open(crxPath, "_blank", "noopener,noreferrer");
-  }
 })();
