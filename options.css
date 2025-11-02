@@ -1,0 +1,153 @@
+/* AEM Dev Toolbar — Options Page Style (Grayscale Theme) */
+
+:root {
+  color-scheme: light dark;
+  --bg-light: #fafafa;
+  --bg-dark: #1e1e1e;
+  --text-light: #1a1a1a;
+  --text-dark: #f2f2f2;
+  --accent: #3c8dbc;
+  --border-light: #e0e0e0;
+  --border-dark: #333;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  background: var(--bg-light);
+  color: var(--text-light);
+  padding: 32px;
+  margin: 0;
+  transition: background 0.3s, color 0.3s;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+  }
+}
+
+/* --- Header --- */
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+p {
+  color: #666;
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  p {
+    color: #aaa;
+  }
+}
+
+/* --- Input & Button --- */
+input[type="text"] {
+  width: 70%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  font-size: 14px;
+  background: #fff;
+  color: #333;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(60, 141, 188, 0.2);
+}
+
+button {
+  background: var(--accent);
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+button:hover {
+  background: #2f7ca1;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* --- Domain List --- */
+ul {
+  margin-top: 16px;
+  padding-left: 20px;
+  list-style: none;
+}
+
+li {
+  margin-bottom: 6px;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 6px 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--border-light);
+  transition: background 0.2s, border 0.2s;
+}
+
+li:hover {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+li button {
+  background: transparent;
+  border: none;
+  color: #999;
+  font-size: 16px;
+  padding: 0 6px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+li button:hover {
+  color: #d33;
+}
+
+/* --- Dark Mode Adjustments --- */
+@media (prefers-color-scheme: dark) {
+  input[type="text"] {
+    background: #2a2a2a;
+    color: #f0f0f0;
+    border-color: var(--border-dark);
+  }
+
+  li {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-dark);
+  }
+
+  li:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  li button {
+    color: #aaa;
+  }
+
+  li button:hover {
+    color: #f55;
+  }
+}

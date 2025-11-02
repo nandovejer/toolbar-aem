@@ -178,11 +178,18 @@ function goToCrx() {
 
 // ------------------ Execution ------------------
 
-(function () {
-  const isAEM =
-    location.hostname.includes("localhost") ||
-    location.hostname.includes("aemcloud.net");
-  if (!isAEM) return;
+(async function () {
+  // Base AEM environments (defaults)
+  const defaultDomains = ["localhost", "aemcloud.net"];
+
+  // Load custom domains
+  const { aemDomains = [] } = await chrome.storage.sync.get("aemDomains");
+  const allDomains = [...defaultDomains, ...aemDomains];
+
+  // Check if current hostname matches any configured domain
+  const isAEM = allDomains.some(domain => location.hostname.includes(domain));
+
+  if (!isAEM) return; // do not inject toolbar
 
   if (window.hasRunAEMToolbar) return;
   window.hasRunAEMToolbar = true;
