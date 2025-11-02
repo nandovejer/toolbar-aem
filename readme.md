@@ -7,7 +7,7 @@ It adds a floating toolbar to AEM pages (local or Cloud) so you can instantly sw
 
 
 
----
+
 
 ### 🚀 Features
 
@@ -34,7 +34,7 @@ toolbar-aem/
 └── ...
 ```
 
----
+
 
 ### ⚙️ Build & Package
 
@@ -62,18 +62,18 @@ This command will:
   dist/aem-dev-toolbar.zip
   ```
 
----
+
 
 ### 🧩 Tech Stack
 
 | Tool                         | Purpose                             |
-| ---------------------------- | ----------------------------------- |
+| - | -- |
 | **Terser**                   | JavaScript minification             |
 | **Clean-CSS**                | CSS minification                    |
 | **Archiver**                 | Builds the ZIP package              |
 | **Rimraf** (Windows support) | Cross-platform cleaning for `dist/` |
 
----
+
 
 ### 💡 How to Load the Extension in Chrome
 
@@ -86,7 +86,7 @@ This command will:
 
 ![Demo](assets/toolbar.gif)
 
----
+
 
 ### 🧠 Notes
 
@@ -94,7 +94,7 @@ This command will:
 - Tested with **Chrome 120+** and **Manifest V3**.
 - Does not track or store user data.
 
----
+
 
 ### 🛠 Development
 
@@ -106,14 +106,14 @@ npm run build
 
 To see changes immediately in Chrome, click **Reload** under your extension in `chrome://extensions`.
 
----
+
 
 ### 🧾 License
 
 This project is licensed under the **MIT License**.
 See the [LICENSE](LICENSE) file for details.
 
----
+
 
 ### 👤 Author
 
