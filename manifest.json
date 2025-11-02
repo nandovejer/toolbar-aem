@@ -1,9 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "AEM Dev Toolbar",
+  "name": "Toolbar AEM",
   "version": "1.0.0",
-  "description": "Toolbar flotante para navegar entre Editor, Sites y CRXDE en AEM.",
-  "icons": { "128": "icon.png" },
+  "description": "A floating toolbar for Adobe Experience Manager (AEM) that lets you quickly switch between Editor, Sites, View, and CRXDE modes.",
+  "icons": {
+    "128": "icon.png"
+  },
   "permissions": ["activeTab", "scripting"],
   "content_scripts": [
     {

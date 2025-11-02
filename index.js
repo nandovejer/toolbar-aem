@@ -1,3 +1,20 @@
+// ------------------ Constants ------------------
+
+const ICON = {
+  less: `<svg width="128" height="128" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path
+        d="M2.732 12c0-.98.92-1.768 2.06-1.768h14.416c1.14 0 2.06.789 2.06 1.768 0 .98-.92 1.768-2.06 1.768H4.792c-1.14 0-2.06-.789-2.06-1.768z" /></svg>`,
+  plus: `<svg width="128" height="128" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path
+        d="M12 2.732c.98 0 1.768.92 1.768 2.06v14.416c0 1.14-.789 2.06-1.768 2.06-.98 0-1.768-.92-1.768-2.06V4.792c0-1.14.789-2.06 1.768-2.06z" /><path
+        d="M2.732 12c0-.98.92-1.768 2.06-1.768h14.416c1.14 0 2.06.789 2.06 1.768 0 .98-.92 1.768-2.06 1.768H4.792c-1.14 0-2.06-.789-2.06-1.768z" /></svg>`,
+};
+
+const BUTTONS = [
+  { label: "Edit", action: goToEditor, id: "btn-edit" },
+  { label: "View", action: goToContent, id: "btn-view" },
+  { label: "Sites", action: goToSites, id: "btn-sites" },
+  { label: "CRX", action: goToCrx, id: "btn-crx" },
+];
+
 // ------------------ Initialization ------------------
 
 function initToolbar() {
@@ -18,14 +35,7 @@ function initToolbar() {
   const group = document.createElement("div");
   group.className = "aem-toolbar-group";
 
-  const buttons = [
-    { label: "Edit", action: goToEditor, id: "btn-edit" },
-    { label: "View", action: goToContent, id: "btn-view" },
-    { label: "Sites", action: goToSites, id: "btn-sites" },
-    { label: "CRX", action: goToCrx, id: "btn-crx" },
-  ];
-
-  for (const { label, action, id } of buttons) {
+  for (const { label, action, id } of BUTTONS) {
     const btn = document.createElement("button");
     btn.textContent = label;
     btn.className = "aem-toolbar-btn";
@@ -47,10 +57,10 @@ function toggleToolbar(toolbar, toggle) {
   const isHidden = group.classList.toggle("hidden");
 
   if (isHidden) {
-    toggle.textContent = "+";
+    toggle.textContent = ICON.plus;
     toggle.title = "Show toolbar";
   } else {
-    toggle.textContent = "−";
+    toggle.textContent = ICON.less;
     toggle.title = "Hide toolbar";
   }
 }
@@ -142,8 +152,6 @@ function toggleToolbar(toolbar, toggle) {
     toggle.title = "Hide toolbar";
   }
 }
-
-
 
 // ------------------ Execution ------------------
 
