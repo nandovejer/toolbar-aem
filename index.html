@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AEM Dev Toolbar – Chrome Extension</title>
+    <link rel="icon" href="icon.png" />
+    <!-- ✅ Pico.css CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+
+      main {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 3rem 1rem;
+      }
+
+      header img {
+        width: 64px;
+        height: 64px;
+      }
+
+      h1 {
+        margin-bottom: 0.3em;
+      }
+
+      .screenshot {
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        margin: 2rem 0;
+        max-width: 100%;
+      }
+
+      footer {
+        margin-top: 4rem;
+        font-size: 0.9rem;
+        text-align: center;
+        color: var(--muted-color);
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <header>
+        <img src="icon.png" alt="AEM Dev Toolbar Logo" />
+        <h1>AEM Dev Toolbar</h1>
+        <p>A lightweight Chrome extension for Adobe Experience Manager developers.</p>
+      </header>
+
+      <section>
+        <h2>🚀 Features</h2>
+        <ul>
+          <li>Quickly switch between <strong>Editor</strong>, <strong>Sites</strong>, <strong>CRXDE</strong>, and <strong>View</strong>.</li>
+          <li>Supports <code>localhost</code>, <code>aemcloud.net</code>, and custom AEM environments.</li>
+          <li>Floating, collapsible toolbar with dark/light themes.</li>
+          <li>Configurable domains via extension options.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🧩 Screenshot</h2>
+        <img
+          src="docs/preview.png"
+          alt="AEM Dev Toolbar Preview"
+          class="screenshot"
+        />
+      </section>
+
+      <section>
+        <h2>📦 Installation</h2>
+        <p>
+          <strong>Option 1:</strong> Download or clone this repository and load it as an unpacked extension:
+        </p>
+        <pre><code>chrome://extensions → Enable Developer mode → Load unpacked</code></pre>
+        <p>
+          <strong>Option 2:</strong> Install directly from the Chrome Web Store (coming soon).
+        </p>
+      </section>
+
+      <section>
+        <h2>⚙️ Configuration</h2>
+        <p>
+          Open the <strong>Options</strong> page from Chrome Extensions to add additional AEM base URLs (e.g., production or dev environments).
+        </p>
+      </section>
+
+      <section>
+        <h2>🧑‍💻 Author</h2>
+        <p>
+          Built by <strong>Nando Muñoz</strong> — Frontend Engineer & AEM Developer.<br />
+          <a href="https://github.com/nandovejer" target="_blank">GitHub Profile</a>
+        </p>
+      </section>
+
+      <footer>
+        <p>© 2025 AEM Dev Toolbar – MIT License</p>
+      </footer>
+    </main>
+  </body>
+</html>

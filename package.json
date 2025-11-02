@@ -1,0 +1,34 @@
+{
+  "name": "toolbar-aem",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && node scripts/build.js"
+  },
+  "devDependencies": {
+    "archiver": "^6.0.0",
+    "clean-css": "^5.3.3",
+    "rimraf": "6.1.0",
+    "terser": "^5.44.0"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "description": "A lightweight Chrome extension for Adobe Experience Manager (AEM) developers. Adds a floating toolbar to AEM pages (local or Cloud) so you can instantly switch between Editor, Content, Sites, and CRXDE views.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nandovejer/toolbar-aem.git"
+  },
+  "keywords": [
+    "aem",
+    "toolbar"
+  ],
+  "author": "Nando Muñoz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nandovejer/toolbar-aem/issues"
+  },
+  "homepage": "https://github.com/nandovejer/toolbar-aem#readme"
+}
